@@ -32,7 +32,9 @@ module EffectiveDatatablesHelper
         'simple' => simple.to_s,
         'source' => effective_datatables.datatable_path(datatable, {format: 'json'}),
         'total-records' => datatable.to_json[:recordsTotal]
-      }
+      },
+      cellspacing: '0',
+      width: '100%'
     }
 
     if (charts || filters) && !simple
