@@ -1,11 +1,11 @@
-/*! Bootstrap integration for DataTables' Responsive
- * ©2015-2016 SpryMedia Ltd - datatables.net/license
+/*! Bootstrap 4 integration for DataTables' Responsive
+ * ©2016 SpryMedia Ltd - datatables.net/license
  */
 
 (function( factory ){
   if ( typeof define === 'function' && define.amd ) {
     // AMD
-    define( ['jquery', 'datatables.net-bs', 'datatables.net-responsive'], function ( $ ) {
+    define( ['jquery', 'datatables.net-bs4', 'datatables.net-responsive'], function ( $ ) {
       return factory( $, window, document );
     } );
   }
@@ -17,7 +17,7 @@
       }
 
       if ( ! $ || ! $.fn.dataTable ) {
-        $ = require('datatables.net-bs')(root, $).$;
+        $ = require('datatables.net-bs4')(root, $).$;
       }
 
       if ( ! $.fn.dataTable.Responsive ) {
@@ -59,9 +59,13 @@ _display.modal = function ( options ) {
     else {
       if ( ! update ) {
         if ( options && options.header ) {
-          _modal.find('div.modal-header')
+          var header = _modal.find('div.modal-header');
+          var button = header.find('button').detach();
+
+          header
             .empty()
-            .append( '<h4 class="modal-title">'+options.header( row )+'</h4>' );
+            .append( '<h4 class="modal-title">'+options.header( row )+'</h4>' )
+            .append( button );
         }
 
         _modal.find( 'div.modal-body' )
